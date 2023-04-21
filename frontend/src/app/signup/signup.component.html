@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="text-center">
+          <h1>Registration</h1>
+        </div>
+        <form>
+          <form [formGroup]="signupForm" (ngSubmit)="submit()">
+            <div class="mb-3">
+              <label class="form-label">Email address</label>
+              <input
+                formControlName="email"
+                type="email"
+                class="form-control"
+              />
+            </div>
+            <button
+              [disabled]="!signupForm.valid"
+              type="submit"
+              class="btn btn-primary"
+            >
+              Send Verification Code
+            </button>
+          </form>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

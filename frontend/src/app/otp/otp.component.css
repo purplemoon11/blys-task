@@ -1,0 +1,26 @@
+.container{
+  padding-top: 250px;
+  text-align: center;
+}
+
+.row{
+  padding: 10px;
+  padding-left: 525px;
+}
+
+.input-box{
+  cursor:pointer;
+  text-align: center;
+  width: 40px;
+  padding: 5px;
+  margin-left: 5px;
+}
+
+.submit{
+  background-color: green;
+  color: white;
+  height: 40px;
+  width: 200px;
+  border-radius: 10px;
+}
+

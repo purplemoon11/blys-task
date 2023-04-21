@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="title-row">
+    <h2>{{ title }}</h2>
+  </div>
+  <div class="row" (ngSubmit)="submit()">
+    <input
+      class="input-box"
+      type="text"
+      #txt1
+      maxlength="1"
+      (keyup)="fillBoxManually($event, '', txt1, txt2)"
+    />
+    <input
+      class="input-box"
+      type="text"
+      #txt2
+      maxlength="1"
+      (keyup)="fillBoxManually($event, txt1, txt2, txt3)"
+    />
+    <input
+      class="input-box"
+      type="text"
+      #txt3
+      maxlength="1"
+      (keyup)="fillBoxManually($event, txt2, txt3, txt4)"
+    />
+    <input
+      class="input-box"
+      type="text"
+      #txt4
+      maxlength="1"
+      (keyup)="fillBoxManually($event, txt3, txt4, txt5)"
+    />
+    <input
+      class="input-box"
+      type="text"
+      #txt5
+      maxlength="1"
+      (keyup)="fillBoxManually($event, txt4, txt5, txt6)"
+    />
+    <input
+      class="input-box"
+      type="text"
+      #txt6
+      maxlength="1"
+      (keyup)="fillBoxManually($event, txt5, txt6, '')"
+    />
+  </div>
+  <button class="submit">Submit</button>
+</div>
