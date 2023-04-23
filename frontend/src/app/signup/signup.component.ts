@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { emailInterface } from '../interface/emailInterface';
 
 @Component({
   selector: 'app-signup',
@@ -10,6 +11,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class SignupComponent implements OnInit {
   public signupForm!: FormGroup;
+  public clicked: boolean = false;
 
   constructor(
     private readonly router: Router,
@@ -23,7 +25,10 @@ export class SignupComponent implements OnInit {
   }
   submit() {
     this.http
-      .post<any>('http://localhost:3000/profile', this.signupForm.value)
+      .post<emailInterface>(
+        'http://localhost:3000/api/send-otp',
+        this.signupForm.value
+      )
       .subscribe(
         (res) => {
           alert('OTP sent to your email');
@@ -31,6 +36,7 @@ export class SignupComponent implements OnInit {
           this.router.navigate(['otp']);
         },
         (err) => {
+          console.log(err);
           alert('Something went wrong');
         }
       );
