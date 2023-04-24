@@ -10,7 +10,7 @@ import { otpInterface } from '../interface/emailInterface';
   styleUrls: ['./otp.component.css'],
 })
 export class OtpComponent implements OnInit {
-  title = 'Verification Code';
+  title = 'Verifiy Email and OTP';
   public otpForm!: FormGroup;
 
   constructor(
@@ -52,7 +52,7 @@ export class OtpComponent implements OnInit {
   submit() {
     this.http
       .post<otpInterface>(
-        'http://localhost:3000/api/verify-otp',
+        'http://localhost:3000/api/verify',
         this.otpForm.value
       )
       .subscribe(

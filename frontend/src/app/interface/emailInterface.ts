@@ -1,7 +1,4 @@
-export interface emailInterface {
-  email: String;
-}
-
 export interface otpInterface {
+  email: String;
   otp: String;
 }

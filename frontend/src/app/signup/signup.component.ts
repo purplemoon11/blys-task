@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { emailInterface } from '../interface/emailInterface';
+import { otpInterface } from '../interface/emailInterface';
 
 @Component({
   selector: 'app-signup',
@@ -25,7 +25,7 @@ export class SignupComponent implements OnInit {
   }
   submit() {
     this.http
-      .post<emailInterface>(
+      .post<otpInterface>(
         'http://localhost:3000/api/send-otp',
         this.signupForm.value
       )

@@ -54,3 +54,16 @@ exports.verifyOtp = async ({ email, otp }) => {
         throw error;
     }
 }
+
+exports.verifyUserEmail = async ({ email, otp }) => {
+    try {
+        const validOtp = await this.verifyOtp({ email, otp });
+        console.log(validOtp)
+        if (!validOtp) {
+            throw Error("Invalid pin code");
+        }
+        return;
+    } catch (error) {
+        throw error;
+    }
+}
