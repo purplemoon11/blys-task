@@ -7,58 +7,18 @@
       <form>
         <form [formGroup]="otpForm" (ngSubmit)="submit()">
           <div class="mb-3">
-            <label class="form-label">Email address</label>
+            <label class="form-label"
+              >Email address <br />Otp has been sent to your Email</label
+            >
             <input formControlName="email" type="email" class="form-control" />
             <br /><br />
           </div>
-          <input
-            class="input-box"
-            type="text"
+          <ngx-pass-code
             formControlName="otp"
-            #txt1
-            maxlength="1"
-            (keyup)="fillBoxManually($event, '', txt1, txt2)"
-          />
-          <input
-            class="input-box"
-            type="text"
-            formControlName="otp"
-            #txt2
-            maxlength="1"
-            (keyup)="fillBoxManually($event, txt1, txt2, txt3)"
-          />
-          <input
-            class="input-box"
-            type="text"
-            formControlName="otp"
-            #txt3
-            maxlength="1"
-            (keyup)="fillBoxManually($event, txt2, txt3, txt4)"
-          />
-          <input
-            class="input-box"
-            type="text"
-            formControlName="otp"
-            #txt4
-            maxlength="1"
-            (keyup)="fillBoxManually($event, txt3, txt4, txt5)"
-          />
-          <input
-            class="input-box"
-            type="text"
-            formControlName="otp"
-            #txt5
-            maxlength="1"
-            (keyup)="fillBoxManually($event, txt4, txt5, txt6)"
-          />
-          <input
-            class="input-box"
-            type="text"
-            formControlName="otp"
-            #txt6
-            maxlength="1"
-            (keyup)="fillBoxManually($event, txt5, txt6, '')"
-          />
+            [length]="6"
+            type="number"
+            [uppercase]="true"
+          ></ngx-pass-code>
           <br /><br />
           <button class="submit" [disabled]="!otpForm.valid">Submit</button>
         </form>
@@ -66,3 +26,4 @@
     </div>
   </div>
 </div>
+<p-toast></p-toast>

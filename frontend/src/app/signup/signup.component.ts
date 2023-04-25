@@ -3,11 +3,13 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { otpInterface } from '../interface/emailInterface';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css'],
+  providers: [MessageService],
 })
 export class SignupComponent implements OnInit {
   public signupForm!: FormGroup;
@@ -16,7 +18,8 @@ export class SignupComponent implements OnInit {
   constructor(
     private readonly router: Router,
     private readonly formBuilder: FormBuilder,
-    private readonly http: HttpClient
+    private readonly http: HttpClient,
+    private readonly messageService: MessageService
   ) {}
   ngOnInit(): void {
     this.signupForm = this.formBuilder.group({
@@ -31,13 +34,23 @@ export class SignupComponent implements OnInit {
       )
       .subscribe(
         (res) => {
-          alert('OTP sent to your email');
-          this.signupForm.reset();
-          this.router.navigate(['otp']);
+          this.clicked = false;
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Email has been sent to you email address',
+          });
+          setTimeout(() => {
+            this.signupForm.reset();
+            this.router.navigate(['otp']);
+          }, 2000);
         },
         (err) => {
-          console.log(err);
-          alert('Something went wrong');
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Something went wrong, Try again',
+          });
         }
       );
   }

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { otpInterface } from '../interface/emailInterface';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-otp',
@@ -14,6 +15,7 @@ export class OtpComponent implements OnInit {
   public otpForm!: FormGroup;
 
   constructor(
+    private readonly messageService: MessageService,
     private readonly router: Router,
     private readonly formBuilder: FormBuilder,
     private readonly http: HttpClient
@@ -26,29 +28,6 @@ export class OtpComponent implements OnInit {
     });
   }
 
-  fillBoxManually(
-    $event: KeyboardEvent,
-    previous: any,
-    current: any,
-    nextBox: any
-  ) {
-    const getLength = current.value.length.toString();
-    const getAnotherLength = current.getAttribute('maxlength');
-    if (getLength === getAnotherLength) {
-      if (nextBox != '') {
-        console.log(nextBox);
-        nextBox.focus();
-      }
-    }
-    if ($event.key === 'Backspace') {
-      if (previous != '') {
-        previous.focus();
-      }
-    }
-  }
-
-  autoPasteInBox() {}
-
   submit() {
     this.http
       .post<otpInterface>(
@@ -57,13 +36,22 @@ export class OtpComponent implements OnInit {
       )
       .subscribe(
         (res) => {
-          alert('Email verification matched, Thank you!!!');
-          this.otpForm.reset();
-          this.router.navigate(['dashboard']);
+          this.messageService.add({
+            severity: 'success',
+            summary: 'Success',
+            detail: 'Email and Otp has been verified !!!',
+          });
+          setTimeout(() => {
+            this.otpForm.reset();
+            this.router.navigate(['dashboard']);
+          }, 2000);
         },
         (err) => {
-          console.log(err);
-          alert('Something went wrong');
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: 'Something went wrong, Try again',
+          });
         }
       );
   }

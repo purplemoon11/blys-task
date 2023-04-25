@@ -38,6 +38,7 @@ exports.sendOtp = async ({ email }) => {
     }
 }
 
+//verify email
 exports.verifyOtp = async ({ email, otp }) => {
     try {
         if (!(email && otp)) {
@@ -55,10 +56,11 @@ exports.verifyOtp = async ({ email, otp }) => {
     }
 }
 
+//Validate email according to otp
+
 exports.verifyUserEmail = async ({ email, otp }) => {
     try {
         const validOtp = await this.verifyOtp({ email, otp });
-        console.log(validOtp)
         if (!validOtp) {
             throw Error("Invalid pin code");
         }

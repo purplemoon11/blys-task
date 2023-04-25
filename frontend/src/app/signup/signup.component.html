@@ -6,7 +6,7 @@
           <h1>Registration</h1>
         </div>
         <form>
-          <form [formGroup]="signupForm" (ngSubmit)="submit()">
+          <form [formGroup]="signupForm" (ngSubmit)="submit(); clicked = true">
             <div class="mb-3">
               <label class="form-label">Email address</label>
               <input
@@ -16,9 +16,10 @@
               />
             </div>
             <button
-              [disabled]="!signupForm.valid"
+              [disabled]="!signupForm.valid || clicked"
               type="submit"
               class="btn btn-primary"
+              pButton
             >
               Send Verification Code
             </button>
@@ -28,3 +29,4 @@
     </div>
   </div>
 </div>
+<p-toast></p-toast>

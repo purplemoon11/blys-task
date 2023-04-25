@@ -13,6 +13,7 @@ mongoose.connect(`mongodb+srv://purplemoon:${process.env.MONGOBD_PASSWORD}@clust
         console.log(`Database connected successfully`)
     })
 
+// Parsing and connecting api to frontend
 app.use(Express.json())
 app.use(cors({
     origin: `${process.env.corsOrigin}`
