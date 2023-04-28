@@ -24,14 +24,22 @@ export class OtpComponent implements OnInit {
   ngOnInit(): void {
     this.otpForm = this.formBuilder.group({
       email: ['', { validators: [Validators.required, Validators.email] }],
-      otp: ['', { validators: [Validators.required] }],
+      otp: [
+        '',
+        {
+          validators: [
+            Validators.required,
+            Validators.pattern('[a-zA-z0-9]{1}'),
+          ],
+        },
+      ],
     });
   }
 
   submit() {
     this.http
       .post<otpInterface>(
-        'http://localhost:3000/api/verify',
+        'https://otp-validation.onrender.com/api/verify',
         this.otpForm.value
       )
       .subscribe(

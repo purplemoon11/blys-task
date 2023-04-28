@@ -29,7 +29,7 @@ export class SignupComponent implements OnInit {
   submit() {
     this.http
       .post<otpInterface>(
-        'http://localhost:3000/api/send-otp',
+        'https://otp-validation.onrender.com/api/send-otp',
         this.signupForm.value
       )
       .subscribe(

@@ -16,8 +16,7 @@
           <ngx-pass-code
             formControlName="otp"
             [length]="6"
-            type="number"
-            [uppercase]="true"
+            type="text"
           ></ngx-pass-code>
           <br /><br />
           <button class="submit" [disabled]="!otpForm.valid">Submit</button>
